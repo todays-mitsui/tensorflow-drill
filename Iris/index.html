@@ -125,14 +125,10 @@ function predict(x) {
   if (!trainedModel) { return; }
 
   const result = trainedModel.predict(tf.tensor([x]));
-
   result.print();
-
   const labels = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'];
-  const index = tf.argMax(result).get(0);
-
+  const index = result.argMax(1).get(0);
   console.log(labels[index]);
-
   return labels[index];
 }
 
@@ -149,10 +145,12 @@ $('.result form').on('submit', (e) => {
     || !sepalWidth
     || !petalLength
     || !petalWidth
-  ) { return; }
+  ) {
+    $('.result p span').text("Fill all fields");
+    return; }
 
-  const result = predict([sepalLength, sepalWidth, petalLength, petalWidth]);
-
+  var result = predict([sepalLength, sepalWidth, petalLength, petalWidth]);
+  console.log(result);
   $('.result p span').text(result);
 });
 </script>
