@@ -36,6 +36,8 @@ npm run mnist
 npm run cifar
 ```
 
+サーバーが立ち上がったら [localhost:8080](http://localhost:8080) にアクセス。
+
 ## 資料
 
 1. [アヤメデータ分類問題  - Iris.ipynb](https://colab.research.google.com/drive/1fZwWFYbLNycPU0Jyop2l8DHIqQVfn4-R)
