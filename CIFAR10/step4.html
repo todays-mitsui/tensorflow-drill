@@ -60,14 +60,14 @@ onDropImage((file) => {
   $('.image > div').html(`<img src="${blobURL}">`);
 
 
-  const inputWidth = inputHeight = 32;
+  const inputWidth = inputHeight = 28;
 
   file2ImageData(file, inputWidth, inputHeight)
     .then((image) => {
       result = tf.tidy(() => {
         // 画像を TensorFlow.js に渡せる形式に変換
         // (shape: [width, height, channels])
-        const channels = 3;
+        const channels = 1;
         let input = tf.fromPixels(image, channels);
 
         // 入力データの正規化

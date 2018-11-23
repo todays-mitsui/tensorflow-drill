@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "mnist": "webpack-dev-server --content-base mnist/"
+    "mnist": "webpack-dev-server --content-base mnist/",
+    "cifar": "webpack-dev-server --content-base CIFAR10/",
+    "cifar10": "webpack-dev-server --content-base CIFAR10/"
   },
   "author": "Mitsui",
   "license": "MIT",
