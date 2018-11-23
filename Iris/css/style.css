@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#container {
+  min-height: 100vw;
+  padding: 6px 12px;
+}
+
+.canvases {
+  display: inline-block;
+
+  width: 450px;
+  height: 250px;
+
+  padding-right: 20px;
+}
+
+#accuracyCanvas > div,
+#lossCanvas > div {
+  height: 100%;
+}
+
+.result th {
+  text-align: left;
+}
+.result td {
+  text-align: right;
+}
+
+.result p {
+  margin-top: 20px;
+}

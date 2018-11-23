@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "mnist": "webpack-dev-server --content-base mnist/",
+    "iris": "webpack-dev-server --content-base Iris/",
+    "mnist": "webpack-dev-server --content-base MNIST/",
     "cifar": "webpack-dev-server --content-base CIFAR10/",
     "cifar10": "webpack-dev-server --content-base CIFAR10/"
   },
