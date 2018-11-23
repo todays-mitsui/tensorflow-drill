@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>MNIST</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="./css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.3/dist/tf.min.js"></script>
+<script src="./js/onDropImage.js"></script>
+<script src="./js/file2ImageData.js"></script>
+
+</head>
+<body>
+<div id="container">
+  <h1>MNIST</h1>
+  <p>CNN(畳み込みニューラルネットワーク) で MNIST の分類問題を解く</p>
+
+  <div class="image">
+    <h3>対象画像</h3>
+    <div></div>
+  </div>
+
+  <div class="result">
+    <h3>結果</h3>
+    <table>
+      <tr><th>0</th><td>-</td></tr>
+      <tr><th>1</th><td>-</td></tr>
+      <tr><th>2</th><td>-</td></tr>
+      <tr><th>3</th><td>-</td></tr>
+      <tr><th>4</th><td>-</td></tr>
+      <tr><th>5</th><td>-</td></tr>
+      <tr><th>6</th><td>-</td></tr>
+      <tr><th>7</th><td>-</td></tr>
+      <tr><th>8</th><td>-</td></tr>
+      <tr><th>9</th><td>-</td></tr>
+    </table>
+  </div>
+</div>
+<!-- /#container -->
+
+<script>
+let model = null;
+let result = null;
+
+console.info('model 読み込み中...');
+tf.loadModel('/model/model.json')
+  .then((pretrainedModel) => {
+    console.info('model 読み込み完了!');
+    model = pretrainedModel;
+    console.info(model);
+  });
+
+onDropImage((file) => {
+  const blobURL = URL.createObjectURL(file);
+  $('.image > div').html(`<img src="${blobURL}">`);
+
+
+  const inputWidth = inputHeight = 28;
+
+  file2ImageData(file, inputWidth, inputHeight)
+    .then((image) => {
+      result = tf.tidy(() => {
+        // 画像を TensorFlow.js に渡せる形式に変換
+        // (shape: [width, height, channels])
+        const channels = 1;
+        let input = tf.fromPixels(image, channels);
+
+        // 入力データの正規化
+        input = tf.cast(input, 'float32').div(tf.scalar(255));
+
+        // さらに形式変換
+        // (shape: [batch_size, width, height, channels])
+        input = input.expandDims();
+
+        // 読み取り
+        return model.predict(input).dataSync();
+      });
+
+      console.info(result);
+    });
+});
+</script>
+</body>
+</html>

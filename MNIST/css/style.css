@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+#container {
+  min-height: 100vw;
+  padding: 6px 12px;
+}
+
+.image,
+.result {
+  display: inline-block;
+
+  padding-right: 20px;
+
+  vertical-align: top;
+}
+
+.image > div:empty {
+  display: inline-block;
+
+  min-width: 80px;
+  min-height: 80px;
+
+  background-color: #aaa;
+}
+
+.result table {
+  border-collapse: collapse;
+
+  border-top: 1px solid #666;
+  border-left: 1px solid #666;
+}
+.result th,
+.result td {
+  min-width: 100px;
+  padding: 8px;
+
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+.result td {
+  text-align: right;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "tensorflow_drill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "mnist": "webpack-dev-server --content-base mnist/"
+  },
+  "author": "Mitsui",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
